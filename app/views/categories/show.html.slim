@@ -1,2 +1,43 @@
-h1 Categories#show
-p Find me in app/views/categories/show.html.slim
+h1 カテゴリーの詳細
+
+.nav.justify-content-end 
+    = link_to 'Todo一覧', tasks_path, class: 'nav-link'
+    = link_to 'カテゴリー一覧', categories_path, class: 'nav-link'
+table.table.table-hover 
+    tbody 
+        tr 
+            th id 
+            td= @category.id
+        tr 
+            th name
+            td= @category.name
+        tr
+            th created_at 
+            td= @category.created_at
+        tr
+            th updated_at 
+            td= @category.updated_at
+
+= link_to 'カテゴリーを編集', edit_category_path, class: 'btn btn-primary me-3'
+= link_to 'カテゴリーを削除', @category, method: :delete, class: 'btn btn-danger'
+
+.mb-3
+
+h3 カテゴリーのタスク
+
+table.table.table-hover 
+    thead.thead-default 
+        tr 
+            th is_done 
+            th name
+            th created_at
+            th 
+    tbody 
+        -@category_tasks.each do |task|
+            tr 
+                td= task.is_done
+                td= link_to task.name, task
+                td= task.created_at 
+                td
+                    = link_to '編集', edit_task_path(task), class: 'btn btn-primary me-3'
+                    = link_to '削除', task, method: :delete, class: 'btn btn-danger'

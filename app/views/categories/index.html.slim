@@ -1,2 +1,23 @@
-h1 Categories#index
-p Find me in app/views/categories/index.html.slim
+h1 カテゴリー一覧
+
+.row
+    .col 
+        = link_to 'Todo新規登録', new_task_path, class: 'btn btn-primary me-3'
+        = link_to 'カテゴリー新規登録', new_category_path, class: 'btn btn-primary'
+    .col 
+        .nav.justify-content-end 
+            = link_to 'Todo一覧', tasks_path, class: 'nav-link'
+
+.mb-3 
+table.table.table-hover 
+    thead.thead-default 
+        tr  
+            th name
+            th 
+    tbody 
+        -@categories.each do |category|
+            tr 
+                td= link_to category.name, category
+                td
+                    = link_to '編集', edit_category_path(category), class: 'btn btn-primary me-3'
+                    = link_to '削除', category, method: :delete, class: 'btn btn-danger'
