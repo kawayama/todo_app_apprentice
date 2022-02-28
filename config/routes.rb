@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root 'tasks#index'
-  resources :tasks
-  resources :categories
-  get 'categories/:id/done', to: 'categories#done'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'categories#index'
+  resources :categories do
+    resources :tasks
+  end
+
+  post 'categories/:id/tasks/add', to: 'tasks#add'
+  post 'categories/:id/tasks/update', to: 'tasks#update'
 end

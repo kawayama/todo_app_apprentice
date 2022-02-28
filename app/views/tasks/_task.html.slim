@@ -1,0 +1,10 @@
+.row.rounded.mb-3
+    = fields_for 'tasks[]', task do |f|
+        .input-group
+            .input-group-text
+                = f.check_box :is_done, class: 'form-check-input mt-0', style: 'transform: scale(2)'
+            = f.text_field :name, class: 'form-control', placeholder: 'タスク名を入力してください'
+            - if not new 
+                .input-group-text =task.created_at
+                .input-group-text.p-0
+                    = link_to '削除', category_task_path(category, task), method: :delete, class: 'btn btn-danger'

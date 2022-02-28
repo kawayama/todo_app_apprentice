@@ -1,8 +1,8 @@
 h1 カテゴリーの詳細
 
 .nav.justify-content-end 
-    = link_to 'Todo一覧', tasks_path, class: 'nav-link'
     = link_to 'カテゴリー一覧', categories_path, class: 'nav-link'
+
 table.table.table-hover 
     tbody 
         tr 
@@ -23,23 +23,22 @@ table.table.table-hover
 
 .mb-5
 
-h3 カテゴリーのタスク
+.row
+    .col 
+        h3 カテゴリーのタスク
+    .col 
+        .nav.justify-content-end
+            = form_with url: "/categories/#{@category.id}/tasks/add", method: :post do |f|
+                = hidden_field_tag :cnt, -1, id: "cnt"
+                = f.submit 'タスク追加', class: 'btn btn-info'
 
-table.table.table-hover 
-    thead.thead-default 
-        tr 
-            th is_done 
-            th name
-            th created_at
-            th 
-    tbody 
-        -@category_tasks.each do |task|
-            tr 
-                td= task.is_done
-                td= link_to task.name, task
-                td= task.created_at 
-                td
-                    = link_to '編集', edit_task_path(task), class: 'btn btn-primary me-3'
-                    = link_to '削除', task, method: :delete, class: 'btn btn-danger'
+.mb-3
 
-= link_to 'すべて完了にする', "#{@category.id}/done", class: 'btn btn-info'
+.container
+    = form_with model: @tasks, url: "/categories/#{@category.id}/tasks/update", local: true do |f|
+        -if @category_tasks.blank?
+            = render partial: 'tasks/task', locals: { category: @category, task: Task.new(id: 0), new: true }
+        -else
+            -@category_tasks.each do |task|
+                = render partial: 'tasks/task', locals: { category: @category, task: task, new: false }
+        = f.submit '変更を更新', id: 'tasks_form_submit', class: 'btn btn-primary'

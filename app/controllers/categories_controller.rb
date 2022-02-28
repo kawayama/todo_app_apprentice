@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @category_tasks = @category.tasks
+    @category_tasks = @category.tasks.order(created_at: :asc)
   end
 
   def new
@@ -32,15 +32,6 @@ class CategoriesController < ApplicationController
     category = Category.find(params[:id])
     category.destroy
     redirect_to categories_url
-  end
-
-  def done
-    category = Category.find(params[:id])
-    tasks = category.tasks
-    tasks.each do |task|
-      task.update(is_done: true)
-    end
-    redirect_to category
   end
 
   private

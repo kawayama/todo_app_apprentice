@@ -1,0 +1,2 @@
+$('#tasks_form_submit').before("<%= j(render partial: 'tasks/task', locals: { category: @category, task: Task.new(id: @cnt), new: true }) %>");
+$('#cnt')[0].setAttribute('value', "<%= @cnt %>")
