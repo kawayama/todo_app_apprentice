@@ -34,6 +34,15 @@ class CategoriesController < ApplicationController
     redirect_to categories_url
   end
 
+  def done
+    category = Category.find(params[:id])
+    tasks = category.tasks
+    tasks.each do |task|
+      task.update(is_done: true)
+    end
+    redirect_to category
+  end
+
   private
 
   def category_params
