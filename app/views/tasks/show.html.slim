@@ -1,2 +1,24 @@
-h1 Tasks#show
-p Find me in app/views/tasks/show.html.slim
+h1 Todoの詳細
+
+.nav.justify-content-end 
+    = link_to '一覧', tasks_path, class: 'nav-link'
+table.table.table-hover 
+    tbody 
+        tr 
+            th id 
+            td= @task.id
+        tr 
+            th name
+            td= @task.name
+        tr 
+            th is_done 
+            td= @task.is_done
+        tr
+            th created_at 
+            td= @task.created_at
+        tr
+            th updated_at 
+            td= @task.updated_at
+
+= link_to '編集', edit=task_path, class: 'btn btn-primary mr-3'
+= link_to '削除', @task, method: :delete, class: 'btn btn-danger'

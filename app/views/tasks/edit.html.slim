@@ -1,2 +1,11 @@
-h1 Tasks#edit
-p Find me in app/views/tasks/edit.html.slim
+h1 Todoの編集
+
+.nav.justify-content-end 
+    = link_to '一覧', tasks_path, class: 'nav-link'
+
+= form_with model: @task, local: true do |f|
+    = f.check_box :is_done, id: 'task_is_done', style: 'margin-right: 30px'
+    = f.text_field :name, id: 'task_name', placeholder: 'name'
+    br/
+    br/
+    = f.submit nil, class: 'btn btn-primary'
