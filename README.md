@@ -1,5 +1,6 @@
 # Heroku
-https://ancient-mesa-11176.herokuapp.com/categories/1
+https://ancient-mesa-11176.herokuapp.com/categories
+
 (アカウントがないため、URLを知っている人に全て共有されます)
 
 # スクリーンショット
