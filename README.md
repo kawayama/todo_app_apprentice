@@ -1,3 +1,7 @@
+# Heroku
+https://ancient-mesa-11176.herokuapp.com/categories/1
+(アカウントがないため、URLを知っている人に全て共有されます)
+
 # スクリーンショット
 
 ![ancient-mesa-11176 herokuapp com_](https://user-images.githubusercontent.com/49111615/160271525-d724eb42-d863-4698-8801-69183e1aa29e.png)
